@@ -13,13 +13,22 @@ const getAll = async (req: Request, res: Response) => {
 
 const getById = async (req: Request, res: Response) => {
     try {
-        const userId = req.params.id
+        const userId = req.params.userId
         const user = await usersService.getById(userId);
         res.status(200).send(user);
     } catch (e: any) {
-        console.log('Err');
         res.status(500).send('Something went wrong!');
     }
 }
 
-export { getAll, getById }
+const deleteById = async (req: Request, res: Response) => {
+    try {
+        const userId = req.params.userId
+        await usersService.deleteById(userId);
+        res.status(200).send(`${userId} is deleted successfully!`);
+    } catch (e: any) {
+        res.status(500).send('Something went wrong!');
+    }
+}
+
+export { getAll, getById, deleteById }

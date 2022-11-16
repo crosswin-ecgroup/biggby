@@ -1,7 +1,7 @@
-import { userRouter } from "./users.router";
 import { Express, Request, Response } from "express";
+import { userRouter } from "../modules/user/routers/users.router";
 
-const routes = ((server: Express) => {
+const initializePrivateRoute = ((server: Express) => {
 
     server.get('/', (req: Request, res: Response) => {
         res.status(200).send('Welcome')
@@ -10,4 +10,4 @@ const routes = ((server: Express) => {
     server.use('/user', userRouter);
 });
 
-export { routes }
+export { initializePrivateRoute }
