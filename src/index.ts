@@ -1,7 +1,7 @@
-import express, { Express } from 'express'
+import express, { Express, Request, Response } from 'express'
 import 'dotenv/config'
 
-import { middleware } from "./core/middleware";
+// import { middleware } from "./core/middleware";
 import { initializePrivateRoute } from "./routes/privateRoutes";
 import { initializePublicRoute } from './routes/publicRoutes';
 
@@ -12,7 +12,11 @@ const server: Express = express()
 
 server.use(express.json())
 
-server.use(middleware);
+// server.use(middleware);
+
+server.get('/', (req: Request, res: Response) => {
+    res.status(200).send('Welcome')
+});
 
 initializePrivateRoute(server);
 initializePublicRoute(server);
